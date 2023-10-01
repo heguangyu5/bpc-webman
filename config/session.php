@@ -24,7 +24,7 @@ return [
 
     'config' => [
         'file' => [
-            'save_path' => runtime_path() . '/sessions',
+            'save_path' => BASE_PATH_REAL . '/runtime/sessions',
         ],
         'redis' => [
             'host' => '127.0.0.1',
@@ -43,7 +43,7 @@ return [
     ],
 
     'session_name' => 'PHPSID',
-    
+
     'auto_update_timestamp' => false,
 
     'lifetime' => 7*24*60*60,
@@ -53,11 +53,11 @@ return [
     'cookie_path' => '/',
 
     'domain' => '',
-    
+
     'http_only' => true,
 
     'secure' => false,
-    
+
     'same_site' => '',
 
     'gc_probability' => [1, 1000],

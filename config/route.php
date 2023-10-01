@@ -14,8 +14,10 @@
 
 use Webman\Route;
 
+Route::any('/test', function ($request) {
+    return response('test');
+});
 
-
-
-
-
+Route::any('/user/{id:\d+}', function ($request, $id) {
+    return response($id);
+});

@@ -36,12 +36,15 @@ if ($worker) {
     }, time());
 }
 
+if (defined('__BPC__')) {
+} else {
 if (class_exists('Dotenv\Dotenv') && file_exists(base_path() . '/.env')) {
     if (method_exists('Dotenv\Dotenv', 'createUnsafeMutable')) {
         Dotenv::createUnsafeMutable(base_path())->load();
     } else {
         Dotenv::createMutable(base_path())->load();
     }
+}
 }
 
 Config::clear();

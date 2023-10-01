@@ -10,7 +10,11 @@ class IndexController
     {
         static $readme;
         if (!$readme) {
-            $readme = file_get_contents(base_path('README.md'));
+            if (defined('__BPC__')) {
+                $readme = resource_get_contents(base_path('README.md'));
+            } else {
+                $readme = file_get_contents(base_path('README.md'));
+            }
         }
         return $readme;
     }
