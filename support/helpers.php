@@ -33,6 +33,7 @@ const WEBMAN_VERSION = '1.4';
 
 // Project base path
 define('BASE_PATH', dirname(__DIR__));
+define('BASE_PATH_REAL', getcwd());
 
 /**
  * return the program execute directory
@@ -43,7 +44,11 @@ function run_path(string $path = ''): string
 {
     static $runPath = '';
     if (!$runPath) {
-        $runPath = \is_phar() ? \dirname(\Phar::running(false)) : BASE_PATH;
+        if (defined('__BPC__')) {
+            $runPath = BASE_PATH;
+        } else {
+            $runPath = \is_phar() ? \dirname(\Phar::running(false)) : BASE_PATH;
+        }
     }
     return \path_combine($runPath, $path);
 }
@@ -221,10 +226,10 @@ function raw_view(string $template, array $vars = [], string $app = null): Respo
  * @param string|null $app
  * @return Response
  */
-function blade_view(string $template, array $vars = [], string $app = null): Response
-{
-    return new Response(200, [], Blade::render($template, $vars, $app));
-}
+//function blade_view(string $template, array $vars = [], string $app = null): Response
+//{
+//    return new Response(200, [], Blade::render($template, $vars, $app));
+//}
 
 /**
  * Think view response
@@ -233,10 +238,10 @@ function blade_view(string $template, array $vars = [], string $app = null): Res
  * @param string|null $app
  * @return Response
  */
-function think_view(string $template, array $vars = [], string $app = null): Response
-{
-    return new Response(200, [], ThinkPHP::render($template, $vars, $app));
-}
+//function think_view(string $template, array $vars = [], string $app = null): Response
+//{
+//    return new Response(200, [], ThinkPHP::render($template, $vars, $app));
+//}
 
 /**
  * Twig view response
@@ -245,10 +250,10 @@ function think_view(string $template, array $vars = [], string $app = null): Res
  * @param string|null $app
  * @return Response
  */
-function twig_view(string $template, array $vars = [], string $app = null): Response
-{
-    return new Response(200, [], Twig::render($template, $vars, $app));
-}
+//function twig_view(string $template, array $vars = [], string $app = null): Response
+//{
+//    return new Response(200, [], Twig::render($template, $vars, $app));
+//}
 
 /**
  * Get request
@@ -332,25 +337,25 @@ function session($key = null, $default = null)
  * @param string|null $locale
  * @return string
  */
-function trans(string $id, array $parameters = [], string $domain = null, string $locale = null): string
-{
-    $res = Translation::trans($id, $parameters, $domain, $locale);
-    return $res === '' ? $id : $res;
-}
+//function trans(string $id, array $parameters = [], string $domain = null, string $locale = null): string
+//{
+//    $res = Translation::trans($id, $parameters, $domain, $locale);
+//    return $res === '' ? $id : $res;
+//}
 
 /**
  * Locale
  * @param string|null $locale
  * @return string
  */
-function locale(string $locale = null): string
-{
-    if (!$locale) {
-        return Translation::getLocale();
-    }
-    Translation::setLocale($locale);
-    return $locale;
-}
+//function locale(string $locale = null): string
+//{
+//    if (!$locale) {
+//        return Translation::getLocale();
+//    }
+//    Translation::setLocale($locale);
+//    return $locale;
+//}
 
 /**
  * 404 not found
@@ -511,7 +516,11 @@ function get_realpath(string $filePath): string
  */
 function is_phar(): bool
 {
-    return \class_exists(\Phar::class, false) && Phar::running();
+    if (defined('__BPC__')) {
+        return false;
+    } else {
+        return \class_exists(\Phar::class, false) && Phar::running();
+    }
 }
 
 /**

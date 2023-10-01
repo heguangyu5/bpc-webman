@@ -18,7 +18,7 @@ return [
             [
                 'class' => Monolog\Handler\RotatingFileHandler::class,
                 'constructor' => [
-                    runtime_path() . '/logs/webman.log',
+                    BASE_PATH_REAL . '/runtime/logs/webman.log',
                     7, //$maxFiles
                     Monolog\Logger::DEBUG,
                 ],
