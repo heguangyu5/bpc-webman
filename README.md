@@ -1,3 +1,26 @@
+# BPC Notes 1: How to make?
+
+```shell
+make
+```
+
+# BPC Notes 2: How to run?
+
+```shell
+./start start
+```
+
+# BPC Notes 3: test urls
+
+- http://localhost:8787/sayhi.txt
+- http://localhost:8787/test
+- http://localhost:8787/user/101
+- http://localhost:8787/
+- http://localhost:8787/index/view
+- http://localhost:8787/index/json
+- http://localhost:8787/404-not-found
+
+
 <div style="padding:18px;max-width: 1024px;margin:0 auto;background-color:#fff;color:#333">
 <h1>webman</h1>
 
