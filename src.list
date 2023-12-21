@@ -22,6 +22,7 @@ config/static.php
 config/translation.php
 config/view.php
 app/controller/IndexController.php
+app/controller/UserController.php
 app/functions.php
 app/middleware/StaticFile.php
 app/view/index/view.html

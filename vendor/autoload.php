@@ -1,7 +1,8 @@
 <?php
 
-include 'FastRoute/functions.php';
-include __DIR__ . '/../support/helpers.php';
+require 'FastRoute/functions.php';
+require 'Illuminate/Support/helpers.php';
+require __DIR__ . '/../support/helpers.php';
 
 spl_autoload_register(function ($class) {
     if (   strpos($class, 'Psr\\Log\\') === 0
@@ -10,6 +11,8 @@ spl_autoload_register(function ($class) {
         || strpos($class, 'Monolog\\') === 0
         || strpos($class, 'Workerman\\') === 0
         || strpos($class, 'Webman\\') === 0
+        || strpos($class, 'Doctrine\\') === 0
+        || strpos($class, 'Illuminate\\') === 0
     ) {
         require str_replace('\\', '/', $class) . '.php';
     } elseif (strpos($class, 'support\\') === 0) {

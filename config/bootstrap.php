@@ -11,13 +11,8 @@
  * @link      http://www.workerman.net/
  * @license   http://www.opensource.org/licenses/mit-license.php MIT License
  */
-if (defined('__BPC__')) {
-    return array(
-        support\bootstrap\Session::class
-    );
-} else {
+
 return [
     support\bootstrap\Session::class,
     support\bootstrap\LaravelDb::class,
 ];
-}
