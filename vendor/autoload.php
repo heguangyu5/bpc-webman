@@ -19,5 +19,20 @@ spl_autoload_register(function ($class) {
         require 'Webman/' . str_replace('\\', '/', $class) . '.php';
     } elseif (strpos($class, 'process\\') === 0) {
         require __DIR__ . '/../' . str_replace('\\', '/', $class) . '.php';
+    } elseif (strpos($class, 'plugin\\') === 0) {
+        if (defined('__BPC__')) {
+            if (strpos($class, '\\app\\controller\\')) {
+                $class = strtolower($class);
+            }
+            $path = __DIR__ . '/../' . str_replace('\\', '/', $class)  . '.php';
+            // Route::convertToCallable() 需要加载
+            // App::guessControllerAction() 需要尝试
+            include_silent($path);
+        } else {
+            $path = __DIR__ . '/../' . str_replace('\\', '/', $class)  . '.php';
+            if (file_exists($path)) {
+                include $path;
+            }
+        }
     }
 });

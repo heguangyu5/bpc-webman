@@ -127,9 +127,19 @@ foreach (config('plugin', []) as $firm => $projects) {
 
 $directory = base_path() . '/plugin';
 $paths = [config_path()];
-foreach (Util::scanDir($directory) as $path) {
-    if (is_dir($path = "$path/config")) {
-        $paths[] = $path;
+if (defined('__BPC__')) {
+    $pluginWithConfigList = getenv('WEBMAN_PLUGINS_WITH_CONFIG');
+    if ($pluginWithConfigList) {
+        $pluginWithConfigList = explode(',', $pluginWithConfigList);
+        foreach ($pluginWithConfigList as $name) {
+            $paths[] = "$directory/$name/config";
+        }
+    }
+} else {
+    foreach (Util::scanDir($directory) as $path) {
+        if (is_dir($path = "$path/config")) {
+            $paths[] = $path;
+        }
     }
 }
 Route::load($paths);
