@@ -16,6 +16,7 @@ spl_autoload_register(function ($class) {
         || strpos($class, 'Illuminate\\') === 0
         || strpos($class, 'Carbon\\') === 0
         || strpos($class, 'Symfony\\') === 0
+        || strpos($class, 'Intervention\\') === 0
     ) {
         require str_replace('\\', '/', $class) . '.php';
     } elseif (strpos($class, 'support\\') === 0) {
