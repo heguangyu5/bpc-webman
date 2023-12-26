@@ -1,6 +1,7 @@
 <?php
 
 require 'FastRoute/functions.php';
+require 'Symfony/Polyfill/Php80/bootstrap.php';
 require 'Illuminate/Support/helpers.php';
 require __DIR__ . '/../support/helpers.php';
 
@@ -13,6 +14,8 @@ spl_autoload_register(function ($class) {
         || strpos($class, 'Webman\\') === 0
         || strpos($class, 'Doctrine\\') === 0
         || strpos($class, 'Illuminate\\') === 0
+        || strpos($class, 'Carbon\\') === 0
+        || strpos($class, 'Symfony\\') === 0
     ) {
         require str_replace('\\', '/', $class) . '.php';
     } elseif (strpos($class, 'support\\') === 0) {

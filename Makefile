@@ -18,6 +18,10 @@ realstart:
 		-u illuminate-events        \
 		-u illuminate-pagination    \
 		-u illuminate-database      \
+		-u symfony-polyfill-php80           \
+		-u symfony-contracts-translation    \
+		-u symfony-component-translation    \
+		-u carbon                           \
 		-u webman                   \
 		-d display_errors=on                                \
 		-d max_execution_time=-1                            \
@@ -46,6 +50,10 @@ realstart-webman-admin:
 		-u illuminate-events        \
 		-u illuminate-pagination    \
 		-u illuminate-database      \
+		-u symfony-polyfill-php80           \
+		-u symfony-contracts-translation    \
+		-u symfony-component-translation    \
+		-u carbon                           \
 		-u webman                   \
 		-d display_errors=on                                \
 		-d max_execution_time=-1                            \
